@@ -1,21 +1,32 @@
-import Link from "next/link";
-import { Container } from "@/lib/ui/Container";
+import { cms } from "@/lib/cms";
+import {
+  listProjects,
+  listServices,
+  getHomePageContent,
+  HomeHero,
+  FeaturedProjects,
+  QuoteSection,
+  ServicesTeaser,
+  ContactCta,
+} from "@/modules/content";
 
-export default function Home() {
+export default async function Home() {
+  const [content, projects, services] = await Promise.all([
+    getHomePageContent(cms),
+    listProjects(cms),
+    listServices(cms),
+  ]);
+
   return (
-    <Container className="flex flex-1 flex-col items-start justify-center py-32">
-      <h1 className="max-w-md text-4xl leading-tight font-semibold tracking-tight">
-        Nivasa
-      </h1>
-      <p className="mt-4 max-w-md text-lg text-neutral-500">
-        Interior design & architecture studio.
-      </p>
-      <Link
-        href="/projects"
-        className="mt-8 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white dark:bg-neutral-100 dark:text-neutral-900"
-      >
-        View projects
-      </Link>
-    </Container>
+    <main className="flex-1">
+      <HomeHero content={content} />
+      <FeaturedProjects
+        projects={projects.slice(0, 3)}
+        totalCount={projects.length}
+      />
+      <QuoteSection quoteText={content?.quoteText ?? ""} />
+      <ServicesTeaser services={services} />
+      <ContactCta />
+    </main>
   );
 }
