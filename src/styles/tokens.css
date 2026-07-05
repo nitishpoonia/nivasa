@@ -1,11 +1,12 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f3eee4;
+  --foreground: #2a251e;
+  --color-muted: #5f5648;
+  --color-subtle: #7a7061;
+  --color-faint: #8a7e6b;
+  --color-surface: #e7ddcc;
+  --color-border: rgba(42, 37, 30, 0.14);
+  --color-footer-bg: #2a251e;
+  --color-footer-fg: #d8cfbf;
+  --accent: #a56a45;
 }
