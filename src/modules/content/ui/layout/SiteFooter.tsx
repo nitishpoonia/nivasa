@@ -64,6 +64,14 @@ export function SiteFooter({ siteSettings }: Props) {
             © {new Date().getFullYear()} {studioName} Studio. All rights
             reserved.
           </span>
+          <a
+            href="https://nitishpoonia.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-footer-fg hover:text-background no-underline transition-colors"
+          >
+            Site by Nitish Poonia
+          </a>
         </div>
       </div>
     </footer>
