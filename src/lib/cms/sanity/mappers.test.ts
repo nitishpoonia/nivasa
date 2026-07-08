@@ -8,6 +8,7 @@ describe("toProject", () => {
       title: "Lakeview House",
       slug: "lakeview-house",
       summary: "A quiet retreat.",
+      description: ["A quiet retreat by the water."],
       coverImage: {
         alt: "Living room with lake view",
         asset: {
@@ -26,6 +27,7 @@ describe("toProject", () => {
       slug: "lakeview-house",
       title: "Lakeview House",
       summary: "A quiet retreat.",
+      description: ["A quiet retreat by the water."],
       coverImage: {
         url: "https://cdn.sanity.io/cover.jpg",
         width: 1600,

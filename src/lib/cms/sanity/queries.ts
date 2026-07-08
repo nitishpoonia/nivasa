@@ -7,6 +7,7 @@ const projectFieldsQuery = groq`
   title,
   "slug": slug.current,
   summary,
+  description,
   coverImage{ ${imageFieldsQuery} },
   gallery[]{ ${imageFieldsQuery} },
   location,

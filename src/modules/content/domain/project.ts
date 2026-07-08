@@ -5,6 +5,7 @@ export type Project = {
   slug: string;
   title: string;
   summary: string;
+  description: string[];
   coverImage: Media;
   gallery: Media[];
   location?: string;

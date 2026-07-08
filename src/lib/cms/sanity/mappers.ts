@@ -24,6 +24,7 @@ type RawProject = {
   title: string;
   slug: string;
   summary?: string;
+  description?: string[];
   coverImage?: RawImage;
   gallery?: RawImage[];
   location?: string;
@@ -119,6 +120,7 @@ export function toProject(raw: RawProject): Project {
     slug: raw.slug,
     title: raw.title,
     summary: raw.summary ?? "",
+    description: raw.description ?? [],
     coverImage: toMedia(raw.coverImage),
     gallery: (raw.gallery ?? []).map(toMedia),
     location: raw.location,

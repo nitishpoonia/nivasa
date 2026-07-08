@@ -23,6 +23,14 @@ export const project = defineType({
       title: 'Summary',
       type: 'text',
       rows: 3,
+      description: 'Short teaser shown on project cards and listings.',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'array',
+      of: [{type: 'text', rows: 4}],
+      description: 'Full write-up shown on the project detail page, one paragraph per entry.',
     }),
     defineField({
       name: 'coverImage',
