@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { SiteSettings } from "@/modules/content/domain/site-settings";
-import { NewsletterForm } from "@/modules/content/ui/layout/NewsletterForm";
 
 type Props = {
   siteSettings: SiteSettings | null;
@@ -20,7 +19,7 @@ export function SiteFooter({ siteSettings }: Props) {
   return (
     <footer className="bg-footer-bg text-footer-fg mt-16">
       <div className="mx-auto max-w-[1320px] px-5 pt-14 pb-8 sm:px-8 sm:pt-20">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
           <div>
             <div className="text-background font-serif text-2xl font-semibold tracking-[0.16em]">
               {studioName}
@@ -46,16 +45,6 @@ export function SiteFooter({ siteSettings }: Props) {
                 </Link>
               ))}
             </div>
-          </div>
-
-          <div>
-            <div className="text-faint mb-4 font-mono text-[10.5px] tracking-[0.16em] uppercase">
-              Newsletter
-            </div>
-            <p className="text-faint mb-3.5 text-sm">
-              Occasional notes on new work.
-            </p>
-            <NewsletterForm />
           </div>
         </div>
 
