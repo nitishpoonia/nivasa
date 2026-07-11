@@ -5,7 +5,6 @@ import type { AboutPageContent } from "@/modules/content/domain/about-page-conte
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
-import type { Award } from "@/modules/content/domain/award";
 
 export type ListProjectsOptions = {
   category?: string;
@@ -20,5 +19,4 @@ export interface CmsPort {
   getServicesPageContent(): Promise<ServicesPageContent | null>;
   listServices(): Promise<Service[]>;
   listTeamMembers(): Promise<TeamMember[]>;
-  listAwards(): Promise<Award[]>;
 }

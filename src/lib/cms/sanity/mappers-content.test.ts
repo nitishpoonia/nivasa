@@ -6,7 +6,6 @@ import {
   toServicesPageContent,
   toService,
   toTeamMember,
-  toAward,
 } from "@/lib/cms/sanity/mappers";
 
 describe("toSiteSettings", () => {
@@ -142,24 +141,6 @@ describe("toTeamMember", () => {
         alt: "",
         blurDataUrl: undefined,
       },
-    });
-  });
-});
-
-describe("toAward", () => {
-  it("maps a raw award document to the domain type", () => {
-    const award = toAward({
-      _id: "award1",
-      year: 2025,
-      title: "AD100 — Emerging Practice",
-      organization: "Architectural Digest",
-    });
-
-    expect(award).toEqual({
-      id: "award1",
-      year: 2025,
-      title: "AD100 — Emerging Practice",
-      organization: "Architectural Digest",
     });
   });
 });
