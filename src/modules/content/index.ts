@@ -14,6 +14,7 @@ export type {
   ServicesPageContent,
   ProcessStep,
 } from "@/modules/content/domain/services-page-content";
+export type { ContactPageContent } from "@/modules/content/domain/contact-page-content";
 export type { Service } from "@/modules/content/domain/service";
 export type { TeamMember } from "@/modules/content/domain/team-member";
 export type { Award } from "@/modules/content/domain/award";
@@ -24,6 +25,7 @@ export { getSiteSettings } from "@/modules/content/application/get-site-settings
 export { getHomePageContent } from "@/modules/content/application/get-home-page-content";
 export { getAboutPageContent } from "@/modules/content/application/get-about-page-content";
 export { getServicesPageContent } from "@/modules/content/application/get-services-page-content";
+export { getContactPageContent } from "@/modules/content/application/get-contact-page-content";
 export { listServices } from "@/modules/content/application/list-services";
 export { listTeamMembers } from "@/modules/content/application/list-team-members";
 export { listAwards } from "@/modules/content/application/list-awards";

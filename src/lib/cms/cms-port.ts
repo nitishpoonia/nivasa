@@ -3,6 +3,7 @@ import type { SiteSettings } from "@/modules/content/domain/site-settings";
 import type { HomePageContent } from "@/modules/content/domain/home-page-content";
 import type { AboutPageContent } from "@/modules/content/domain/about-page-content";
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
+import type { ContactPageContent } from "@/modules/content/domain/contact-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
 import type { Award } from "@/modules/content/domain/award";
@@ -18,6 +19,7 @@ export interface CmsPort {
   getHomePageContent(): Promise<HomePageContent | null>;
   getAboutPageContent(): Promise<AboutPageContent | null>;
   getServicesPageContent(): Promise<ServicesPageContent | null>;
+  getContactPageContent(): Promise<ContactPageContent | null>;
   listServices(): Promise<Service[]>;
   listTeamMembers(): Promise<TeamMember[]>;
   listAwards(): Promise<Award[]>;

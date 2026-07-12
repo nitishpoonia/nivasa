@@ -62,6 +62,13 @@ export const servicesPageQuery = groq`
   }
 `;
 
+export const contactPageQuery = groq`
+  *[_type == "contactPage"][0]{
+    heading,
+    intro
+  }
+`;
+
 export const listServicesQuery = groq`
   *[_type == "service"] | order(order asc){ _id, name, description, tags }
 `;

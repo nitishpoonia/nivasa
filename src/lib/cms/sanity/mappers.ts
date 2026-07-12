@@ -4,6 +4,7 @@ import type { SiteSettings } from "@/modules/content/domain/site-settings";
 import type { HomePageContent } from "@/modules/content/domain/home-page-content";
 import type { AboutPageContent } from "@/modules/content/domain/about-page-content";
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
+import type { ContactPageContent } from "@/modules/content/domain/contact-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
 import type { Award } from "@/modules/content/domain/award";
@@ -81,6 +82,11 @@ type RawServicesPage = {
   heading?: string;
   intro?: string;
   process?: RawProcessStep[];
+};
+
+type RawContactPage = {
+  heading?: string;
+  intro?: string;
 };
 
 type RawService = {
@@ -179,6 +185,13 @@ export function toServicesPageContent(
       title: step.title ?? "",
       body: step.body ?? "",
     })),
+  };
+}
+
+export function toContactPageContent(raw: RawContactPage): ContactPageContent {
+  return {
+    heading: raw.heading ?? "",
+    intro: raw.intro ?? "",
   };
 }
 
