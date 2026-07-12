@@ -4,6 +4,7 @@ import {
   toHomePageContent,
   toAboutPageContent,
   toServicesPageContent,
+  toContactPageContent,
   toService,
   toTeamMember,
 } from "@/lib/cms/sanity/mappers";
@@ -98,6 +99,29 @@ describe("toServicesPageContent", () => {
       heading: "What we offer",
       intro: "An end-to-end practice.",
       process: [{ title: "Listen", body: "Understanding the brief." }],
+    });
+  });
+});
+
+describe("toContactPageContent", () => {
+  it("maps a raw contactPage document to the domain type", () => {
+    const content = toContactPageContent({
+      heading: "Let's make something lasting.",
+      intro: "Tell us about your project.",
+    });
+
+    expect(content).toEqual({
+      heading: "Let's make something lasting.",
+      intro: "Tell us about your project.",
+    });
+  });
+
+  it("falls back to empty strings when fields are missing", () => {
+    const content = toContactPageContent({});
+
+    expect(content).toEqual({
+      heading: "",
+      intro: "",
     });
   });
 });

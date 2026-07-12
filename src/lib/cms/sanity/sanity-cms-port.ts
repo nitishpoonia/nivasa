@@ -3,6 +3,7 @@ import type { SiteSettings } from "@/modules/content/domain/site-settings";
 import type { HomePageContent } from "@/modules/content/domain/home-page-content";
 import type { AboutPageContent } from "@/modules/content/domain/about-page-content";
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
+import type { ContactPageContent } from "@/modules/content/domain/contact-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
 import type { CmsPort, ListProjectsOptions } from "@/lib/cms/cms-port";
@@ -14,6 +15,7 @@ import {
   homePageQuery,
   aboutPageQuery,
   servicesPageQuery,
+  contactPageQuery,
   listServicesQuery,
   listTeamMembersQuery,
 } from "@/lib/cms/sanity/queries";
@@ -23,6 +25,7 @@ import {
   toHomePageContent,
   toAboutPageContent,
   toServicesPageContent,
+  toContactPageContent,
   toService,
   toTeamMember,
 } from "@/lib/cms/sanity/mappers";
@@ -53,6 +56,10 @@ export const sanityCmsPort: CmsPort = {
   async getServicesPageContent(): Promise<ServicesPageContent | null> {
     const raw = await sanityClient.fetch(servicesPageQuery);
     return raw ? toServicesPageContent(raw) : null;
+  },
+  async getContactPageContent(): Promise<ContactPageContent | null> {
+    const raw = await sanityClient.fetch(contactPageQuery);
+    return raw ? toContactPageContent(raw) : null;
   },
   async listServices(): Promise<Service[]> {
     const raw = await sanityClient.fetch(listServicesQuery);
