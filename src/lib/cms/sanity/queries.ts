@@ -69,7 +69,3 @@ export const listServicesQuery = groq`
 export const listTeamMembersQuery = groq`
   *[_type == "teamMember"] | order(order asc){ _id, name, role, photo{ ${imageFieldsQuery} } }
 `;
-
-export const listAwardsQuery = groq`
-  *[_type == "award"] | order(order asc){ _id, year, title, organization }
-`;

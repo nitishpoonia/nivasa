@@ -6,7 +6,6 @@ import type { AboutPageContent } from "@/modules/content/domain/about-page-conte
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
-import type { Award } from "@/modules/content/domain/award";
 
 type RawImage = {
   alt?: string;
@@ -95,13 +94,6 @@ type RawTeamMember = {
   name?: string;
   role?: string;
   photo?: RawImage;
-};
-
-type RawAward = {
-  _id: string;
-  year?: number;
-  title?: string;
-  organization?: string;
 };
 
 function toMedia(image: RawImage | undefined): Media {
@@ -197,14 +189,5 @@ export function toTeamMember(raw: RawTeamMember): TeamMember {
     name: raw.name ?? "",
     role: raw.role ?? "",
     photo: toMedia(raw.photo),
-  };
-}
-
-export function toAward(raw: RawAward): Award {
-  return {
-    id: raw._id,
-    year: raw.year ?? 0,
-    title: raw.title ?? "",
-    organization: raw.organization ?? "",
   };
 }
