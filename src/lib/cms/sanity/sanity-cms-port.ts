@@ -3,9 +3,9 @@ import type { SiteSettings } from "@/modules/content/domain/site-settings";
 import type { HomePageContent } from "@/modules/content/domain/home-page-content";
 import type { AboutPageContent } from "@/modules/content/domain/about-page-content";
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
+import type { ContactPageContent } from "@/modules/content/domain/contact-page-content";
 import type { Service } from "@/modules/content/domain/service";
 import type { TeamMember } from "@/modules/content/domain/team-member";
-import type { Award } from "@/modules/content/domain/award";
 import type { CmsPort, ListProjectsOptions } from "@/lib/cms/cms-port";
 import { sanityClient } from "@/lib/cms/sanity/client";
 import {
@@ -15,9 +15,9 @@ import {
   homePageQuery,
   aboutPageQuery,
   servicesPageQuery,
+  contactPageQuery,
   listServicesQuery,
   listTeamMembersQuery,
-  listAwardsQuery,
 } from "@/lib/cms/sanity/queries";
 import {
   toProject,
@@ -25,9 +25,9 @@ import {
   toHomePageContent,
   toAboutPageContent,
   toServicesPageContent,
+  toContactPageContent,
   toService,
   toTeamMember,
-  toAward,
 } from "@/lib/cms/sanity/mappers";
 
 export const sanityCmsPort: CmsPort = {
@@ -57,6 +57,10 @@ export const sanityCmsPort: CmsPort = {
     const raw = await sanityClient.fetch(servicesPageQuery);
     return raw ? toServicesPageContent(raw) : null;
   },
+  async getContactPageContent(): Promise<ContactPageContent | null> {
+    const raw = await sanityClient.fetch(contactPageQuery);
+    return raw ? toContactPageContent(raw) : null;
+  },
   async listServices(): Promise<Service[]> {
     const raw = await sanityClient.fetch(listServicesQuery);
     return raw.map(toService);
@@ -64,9 +68,5 @@ export const sanityCmsPort: CmsPort = {
   async listTeamMembers(): Promise<TeamMember[]> {
     const raw = await sanityClient.fetch(listTeamMembersQuery);
     return raw.map(toTeamMember);
-  },
-  async listAwards(): Promise<Award[]> {
-    const raw = await sanityClient.fetch(listAwardsQuery);
-    return raw.map(toAward);
   },
 };

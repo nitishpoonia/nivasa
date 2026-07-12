@@ -4,9 +4,9 @@ import {
   toHomePageContent,
   toAboutPageContent,
   toServicesPageContent,
+  toContactPageContent,
   toService,
   toTeamMember,
-  toAward,
 } from "@/lib/cms/sanity/mappers";
 
 describe("toSiteSettings", () => {
@@ -103,6 +103,29 @@ describe("toServicesPageContent", () => {
   });
 });
 
+describe("toContactPageContent", () => {
+  it("maps a raw contactPage document to the domain type", () => {
+    const content = toContactPageContent({
+      heading: "Let's make something lasting.",
+      intro: "Tell us about your project.",
+    });
+
+    expect(content).toEqual({
+      heading: "Let's make something lasting.",
+      intro: "Tell us about your project.",
+    });
+  });
+
+  it("falls back to empty strings when fields are missing", () => {
+    const content = toContactPageContent({});
+
+    expect(content).toEqual({
+      heading: "",
+      intro: "",
+    });
+  });
+});
+
 describe("toService", () => {
   it("maps a raw service document to the domain type", () => {
     const service = toService({
@@ -142,24 +165,6 @@ describe("toTeamMember", () => {
         alt: "",
         blurDataUrl: undefined,
       },
-    });
-  });
-});
-
-describe("toAward", () => {
-  it("maps a raw award document to the domain type", () => {
-    const award = toAward({
-      _id: "award1",
-      year: 2025,
-      title: "AD100 — Emerging Practice",
-      organization: "Architectural Digest",
-    });
-
-    expect(award).toEqual({
-      id: "award1",
-      year: 2025,
-      title: "AD100 — Emerging Practice",
-      organization: "Architectural Digest",
     });
   });
 });

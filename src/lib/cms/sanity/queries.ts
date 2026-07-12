@@ -62,14 +62,17 @@ export const servicesPageQuery = groq`
   }
 `;
 
+export const contactPageQuery = groq`
+  *[_type == "contactPage"][0]{
+    heading,
+    intro
+  }
+`;
+
 export const listServicesQuery = groq`
   *[_type == "service"] | order(order asc){ _id, name, description, tags }
 `;
 
 export const listTeamMembersQuery = groq`
   *[_type == "teamMember"] | order(order asc){ _id, name, role, photo{ ${imageFieldsQuery} } }
-`;
-
-export const listAwardsQuery = groq`
-  *[_type == "award"] | order(order asc){ _id, year, title, organization }
 `;
