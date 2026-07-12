@@ -12,19 +12,37 @@ const projectTypes = [
   "Other",
 ];
 
+const WHATSAPP_NUMBER = "919521337968";
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [projectType, setProjectType] = useState(projectTypes[0]);
   const [message, setMessage] = useState("");
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const text = [
+      `Project enquiry from ${name || "the website"}`,
+      email ? `Email: ${email}` : null,
+      `Project type: ${projectType}`,
+      message ? `Message: ${message}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
   return (
     <div>
       <Eyebrow className="mb-6">Project enquiry</Eyebrow>
-      <form
-        onSubmit={(event) => event.preventDefault()}
-        className="grid gap-6.5"
-      >
+      <form onSubmit={handleSubmit} className="grid gap-6.5">
         <label className="grid gap-2">
           <span className="text-subtle text-[12.5px]">Name</span>
           <input
