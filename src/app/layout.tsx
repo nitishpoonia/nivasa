@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Instrument_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { cms } from "@/lib/cms";
 import { getSiteSettings, SiteHeader, SiteFooter } from "@/modules/content";
 import "./globals.css";
@@ -43,6 +44,7 @@ export default async function RootLayout({
         <SiteHeader siteSettings={siteSettings} />
         <div className="flex flex-1 flex-col">{children}</div>
         <SiteFooter siteSettings={siteSettings} />
+        <Analytics />
       </body>
     </html>
   );
