@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { PillLink } from "@/lib/ui/PillLink";
 import type { SiteSettings } from "@/modules/content/domain/site-settings";
 
 type Props = {
@@ -46,12 +47,9 @@ export function SiteHeader({ siteSettings }: Props) {
               </Link>
             );
           })}
-          <Link
-            href="/contact"
-            className="bg-foreground text-background hover:bg-muted rounded-full px-4.5 py-2 text-[12.5px] tracking-wide no-underline transition-colors"
-          >
+          <PillLink href="/contact" variant="node-inverted" size="sm">
             Enquire
-          </Link>
+          </PillLink>
         </nav>
       </div>
     </header>

@@ -29,17 +29,18 @@ export function ServicesTeaser({ services }: Props) {
         <Link
           key={service.id}
           href="/services"
-          className="border-border hover:bg-surface/40 grid grid-cols-[64px_1fr_auto] items-center gap-5 border-b py-6 no-underline"
+          className="border-border grid grid-cols-[40px_1fr_20px] items-center gap-5 border-b py-6.5 no-underline transition-[box-shadow,padding] duration-[240ms] hover:pl-[18px] hover:shadow-[inset_3px_0_0_var(--accent)] sm:grid-cols-[64px_1fr_minmax(0,34ch)_28px]"
         >
           <span className="text-accent font-mono text-xs">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="text-foreground font-serif text-2xl leading-none sm:text-4xl">
+          <span className="text-foreground font-serif text-2xl leading-none sm:text-[38px]">
             {service.name}
           </span>
-          <span className="text-subtle max-w-[34ch] text-right text-sm">
+          <span className="text-subtle hidden text-right text-sm leading-normal sm:block">
             {service.description}
           </span>
+          <span className="text-accent text-right text-sm">→</span>
         </Link>
       ))}
     </section>
