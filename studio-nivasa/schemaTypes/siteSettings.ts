@@ -70,18 +70,29 @@ export const siteSettings = defineType({
           name: 'socialLink',
           fields: [
             defineField({
-              name: 'label',
-              title: 'Label',
+              name: 'platform',
+              title: 'Platform',
               type: 'string',
+              options: {
+                list: [
+                  {title: 'Facebook', value: 'facebook'},
+                  {title: 'Instagram', value: 'instagram'},
+                  {title: 'WhatsApp', value: 'whatsapp'},
+                ],
+              },
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'url',
               title: 'URL',
               type: 'url',
+              description: 'For WhatsApp, use a wa.me link, e.g. https://wa.me/918684836664',
               validation: (rule) => rule.required(),
             }),
           ],
+          preview: {
+            select: {title: 'platform', subtitle: 'url'},
+          },
         },
       ],
     }),

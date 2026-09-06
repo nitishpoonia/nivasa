@@ -31,7 +31,7 @@ export const siteSettingsQuery = groq`
     email,
     phone,
     offices[]{ city, addressLines },
-    socialLinks[]{ label, url }
+    socialLinks[]{ platform, url }
   }
 `;
 

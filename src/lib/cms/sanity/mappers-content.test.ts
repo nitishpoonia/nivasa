@@ -18,7 +18,7 @@ describe("toSiteSettings", () => {
       email: "studio@nivasa.design",
       phone: "+91 00000 00000",
       offices: [{ city: "Udaipur", addressLines: ["123 Lake Rd"] }],
-      socialLinks: [{ label: "Instagram", url: "https://instagram.com" }],
+      socialLinks: [{ platform: "instagram", url: "https://instagram.com" }],
     });
 
     expect(settings).toEqual({
@@ -28,8 +28,22 @@ describe("toSiteSettings", () => {
       email: "studio@nivasa.design",
       phone: "+91 00000 00000",
       offices: [{ city: "Udaipur", addressLines: ["123 Lake Rd"] }],
-      socialLinks: [{ label: "Instagram", url: "https://instagram.com" }],
+      socialLinks: [{ platform: "instagram", url: "https://instagram.com" }],
     });
+  });
+
+  it("drops social links with an unrecognized or missing platform", () => {
+    const settings = toSiteSettings({
+      socialLinks: [
+        { platform: "twitter", url: "https://twitter.com" },
+        { url: "https://example.com" },
+        { platform: "facebook", url: "https://facebook.com" },
+      ],
+    });
+
+    expect(settings.socialLinks).toEqual([
+      { platform: "facebook", url: "https://facebook.com" },
+    ]);
   });
 
   it("falls back to empty strings and arrays when fields are missing", () => {

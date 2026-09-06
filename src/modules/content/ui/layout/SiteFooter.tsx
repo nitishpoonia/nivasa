@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialIcon, SOCIAL_PLATFORM_LABELS } from "@/lib/ui/SocialIcon";
 import type { SiteSettings } from "@/modules/content/domain/site-settings";
 
 type Props = {
@@ -19,7 +20,7 @@ export function SiteFooter({ siteSettings }: Props) {
   return (
     <footer className="bg-footer-bg text-footer-fg mt-16">
       <div className="mx-auto max-w-[1320px] px-5 pt-14 pb-8 sm:px-8 sm:pt-20">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
           <div>
             <div className="text-background font-serif text-2xl font-semibold tracking-[0.16em]">
               {studioName}
@@ -46,6 +47,28 @@ export function SiteFooter({ siteSettings }: Props) {
               ))}
             </div>
           </div>
+
+          {siteSettings && siteSettings.socialLinks.length > 0 ? (
+            <div>
+              <div className="text-faint mb-4 font-mono text-[10.5px] tracking-[0.16em] uppercase">
+                Follow
+              </div>
+              <div className="flex gap-4">
+                {siteSettings.socialLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={SOCIAL_PLATFORM_LABELS[link.platform]}
+                    className="text-footer-fg hover:text-background transition-colors"
+                  >
+                    <SocialIcon platform={link.platform} className="size-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <div className="border-footer-fg/15 text-faint mt-12 flex flex-wrap justify-between gap-3 border-t pt-5 font-mono text-xs">

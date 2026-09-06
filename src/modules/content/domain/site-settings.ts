@@ -3,8 +3,10 @@ export type Office = {
   addressLines: string[];
 };
 
+export type SocialPlatform = "facebook" | "instagram" | "whatsapp";
+
 export type SocialLink = {
-  label: string;
+  platform: SocialPlatform;
   url: string;
 };
 

@@ -1,6 +1,9 @@
 import type { Media } from "@/modules/content/domain/media";
 import type { Project } from "@/modules/content/domain/project";
-import type { SiteSettings } from "@/modules/content/domain/site-settings";
+import type {
+  SiteSettings,
+  SocialPlatform,
+} from "@/modules/content/domain/site-settings";
 import type { HomePageContent } from "@/modules/content/domain/home-page-content";
 import type { AboutPageContent } from "@/modules/content/domain/about-page-content";
 import type { ServicesPageContent } from "@/modules/content/domain/services-page-content";
@@ -38,9 +41,19 @@ type RawOffice = {
 };
 
 type RawSocialLink = {
-  label?: string;
+  platform?: string;
   url?: string;
 };
+
+const SOCIAL_PLATFORMS: SocialPlatform[] = [
+  "facebook",
+  "instagram",
+  "whatsapp",
+];
+
+function toSocialPlatform(platform: string | undefined): SocialPlatform | null {
+  return SOCIAL_PLATFORMS.find((candidate) => candidate === platform) ?? null;
+}
 
 type RawSiteSettings = {
   studioName?: string;
@@ -138,10 +151,12 @@ export function toSiteSettings(raw: RawSiteSettings): SiteSettings {
       city: office.city ?? "",
       addressLines: office.addressLines ?? [],
     })),
-    socialLinks: (raw.socialLinks ?? []).map((link) => ({
-      label: link.label ?? "",
-      url: link.url ?? "",
-    })),
+    socialLinks: (raw.socialLinks ?? [])
+      .map((link) => {
+        const platform = toSocialPlatform(link.platform);
+        return platform && link.url ? { platform, url: link.url } : null;
+      })
+      .filter((link) => link !== null),
   };
 }
 
