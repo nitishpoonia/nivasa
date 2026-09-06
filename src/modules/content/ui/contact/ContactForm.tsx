@@ -12,7 +12,7 @@ const projectTypes = [
   "Other",
 ];
 
-const WHATSAPP_NUMBER = "919521337968";
+const WHATSAPP_NUMBER = "918684836664";
 
 export function ContactForm() {
   const [name, setName] = useState("");
