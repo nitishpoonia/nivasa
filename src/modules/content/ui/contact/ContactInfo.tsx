@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/lib/ui/Eyebrow";
+import { SocialIcon, SOCIAL_PLATFORM_LABELS } from "@/lib/ui/SocialIcon";
 import type { SiteSettings } from "@/modules/content/domain/site-settings";
 
 type Props = {
@@ -46,11 +47,14 @@ export function ContactInfo({ siteSettings }: Props) {
         <div className="mt-10 flex gap-5.5">
           {siteSettings.socialLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.platform}
               href={link.url}
-              className="text-muted hover:text-foreground text-[13px] no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={SOCIAL_PLATFORM_LABELS[link.platform]}
+              className="text-muted hover:text-foreground"
             >
-              {link.label}
+              <SocialIcon platform={link.platform} className="size-5" />
             </a>
           ))}
         </div>
