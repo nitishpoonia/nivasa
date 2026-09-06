@@ -16,12 +16,37 @@ export function HomeHero({ content }: Props) {
     "We shape residential and cultural spaces where material, light and proportion are given room to breathe.";
 
   return (
-    <section className="mx-auto max-w-[1320px] px-5 pt-12 pb-8 sm:px-8 sm:pt-20 sm:pb-12">
-      <Eyebrow>{heroEyebrow}</Eyebrow>
-      <h1 className="mt-6 max-w-[15ch] font-serif text-5xl leading-[0.98] font-medium tracking-tight sm:text-7xl lg:text-8xl">
-        {heroHeading}
-      </h1>
-      <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
+    <section>
+      {content?.heroImage ? (
+        <div className="relative h-[420px] overflow-hidden sm:h-[620px]">
+          <Image
+            src={content.heroImage.url}
+            alt={content.heroImage.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : null}
+
+      <div
+        className={`relative mx-auto max-w-[1320px] px-5 sm:px-8 ${
+          content?.heroImage ? "sm:-mt-[132px]" : "pt-12 sm:pt-20"
+        }`}
+      >
+        <div className="bg-background max-w-[900px] py-9 pr-6 sm:-ml-16 sm:pt-11 sm:pr-12 sm:pb-10 sm:pl-16">
+          <div className="flex items-center gap-3.5">
+            <span className="bg-accent block h-px w-11" />
+            <Eyebrow>{heroEyebrow}</Eyebrow>
+          </div>
+          <h1 className="mt-5 max-w-[15ch] font-serif text-5xl leading-[0.96] font-medium tracking-[-0.025em] sm:text-[92px]">
+            {heroHeading}
+          </h1>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-10 flex max-w-[1320px] flex-wrap items-end justify-between gap-8 px-5 sm:px-8">
         <p className="text-muted max-w-[46ch] text-base sm:text-lg">
           {heroSubtext}
         </p>
@@ -32,18 +57,6 @@ export function HomeHero({ content }: Props) {
           View selected work →
         </Link>
       </div>
-
-      {content?.heroImage ? (
-        <div className="border-border relative mt-10 aspect-[16/9] overflow-hidden border sm:aspect-[21/9]">
-          <Image
-            src={content.heroImage.url}
-            alt={content.heroImage.alt}
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
-      ) : null}
     </section>
   );
 }
